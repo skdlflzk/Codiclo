@@ -1,30 +1,28 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-# Phairy
-
-Phairy -  android private git repository
-
-
-
-##############chipset source#################
-1. Celianna
-URL: http://pixanna.nl/materials/celiannas-tileset/
-2. 케이디
-URL: http://keidy.tistory.com/159
-
-##############music source#################
-1. 8BIT CANNON - Mattias "mattix" Lahoud
-2. North - Stiv
-3. Quickbit
-4. cartoon_siren_whistle_001 - soundscalpel.com
-5. success - grunz
-6. gamepack1_mystery_failed - gameloops
-=======
 # Codiclo
+Codiclo App for Android ,  Kotlin ver
 
-codiclo android app
->>>>>>> d5bf306a934871b70c24552e655d227ad764a856
-=======
-# codiclo
-CODICLO App for Android , Kotlin
->>>>>>> cacda20b0069a7044439554b9f142ecfb0674740
+# Preview
+
+
+# 사용된 라이브러리
+Gson
+Glide
+Retrofit
+Coroutine
+Koin
+RxKotlin
+
+ㅡ그 외
+//image-picker 이미지 선택 라이브러리
+	implementation 'gun0912.ted:tedimagepicker:1.0.1'
+//circleImageView - 원형 이미지 뷰
+	implementation 'com.mikhaellopez:circularimageview:4.0.1'
+//sdp - 기기별로 보이는 레이아웃을 통일
+	implementation 'com.intuit.sdp:sdp-android:1.0.6'
+//indicator - 뷰페이저의 현재 위치를 표시
+  implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
+//pinch zoom - 사진의 확대 / 축소
+  implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+
+ㅡ날씨 API
+openweathermap
