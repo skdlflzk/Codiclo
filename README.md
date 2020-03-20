@@ -2,7 +2,7 @@
 Codiclo App for Android ,  Kotlin ver
 
 # Preview
-
+![1](https://github.com/skdlflzk/Codiclo/blob/master/example.png?raw=true)
 
 # 사용된 라이브러리
 Gson
