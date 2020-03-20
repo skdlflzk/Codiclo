@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="cloth"
+            type="com.illill.phairy.data.model.Cloth" />
+
+        <variable
+            name="selected"
+            type="boolean" />
+
+        <variable
+            name="codiViewModel"
+            type="com.illill.phairy.viewmodel.CodiViewModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/rl_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_4sdp"
+        android:gravity="center"
+        app:cardBackgroundColor="@{selected?@color/colorAccent:@color/transparent}"
+        app:cardCornerRadius="26dp"
+
+        app:cardElevation="@dimen/_3sdp"
+        app:contentPadding="2dp"
+        tools:background="@drawable/circle_border_red">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="25dp"
+            >
+
+            <ImageView
+                android:id="@+id/iv_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:clickable="true"
+                android:contentDescription="@string/cloth"
+                android:foreground="?android:selectableItemBackground"
+                android:focusable="true"
+                android:onClick="@{(v)->codiViewModel.clothCircleItemClickListener.invoke(cloth)}"
+                app:clothCircle="@{cloth}"
+/>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.cardview.widget.CardView>
+</layout>

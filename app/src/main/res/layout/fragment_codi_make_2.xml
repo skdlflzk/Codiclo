@@ -1,0 +1,254 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+
+
+        <variable
+            name="codiViewModel"
+            type="com.illill.phairy.viewmodel.CodiViewModel" />
+
+        <variable
+            name="clientViewModel"
+            type="com.illill.phairy.viewmodel.ClientViewModel" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/_32sdp">
+
+                <TextView
+                    android:id="@+id/tv_memo_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_16sdp"
+                    android:text="@string/memo"
+                    android:textSize="@dimen/_14sdp"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/tv_memo"
+                    style="@style/TextViewKR"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@null"
+                    android:hint="@string/memo_hint"
+                    android:text="@={codiViewModel.codi.memo}"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_memo_label"
+                    app:leftView="@{tvMemoLabel}"
+                    app:marginFirstLine="@{codiViewModel.codi.memo}" />
+
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1px"
+                    android:layout_marginTop="@dimen/_6sdp"
+
+                    app:layout_constraintWidth_percent="0.93"
+                    android:background="@color/borderGray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_memo" />
+
+                <TextView
+                    android:id="@+id/tv_tags_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:text="@string/tags"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_memo" />
+
+                <EditText
+                    android:id="@+id/et_tags"
+                    style="@style/TextViewKR"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@null"
+                    android:hint="@string/tag_hint"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:onEditorAction="@{codiViewModel.editorAction}"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toEndOf="@+id/tv_tags_label"
+                    app:layout_constraintTop_toTopOf="@+id/tv_tags_label"
+                    tools:text="" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/layout_tag"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    app:codiViewModel="@{codiViewModel}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="@+id/tv_tags_label"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_tags_label"
+                    app:rwTags="@{codiViewModel.codi.tags}" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1px"
+                    android:layout_marginTop="@dimen/_6sdp"
+
+                    app:layout_constraintWidth_percent="0.93"
+                    android:background="@color/borderGray"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="layout_tag,tv_tags_label"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_tag" />
+
+
+                <TextView
+                    android:id="@+id/tv_season_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginBottom="@dimen/_6sdp"
+                    android:text="@string/season"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+
+                    app:layout_constraintTop_toBottomOf="@+id/layout_tag" />
+
+                <!--app:layout_constraintBottom_toTopOf="@+id/layout_season"-->
+
+                <!--<com.google.android.material.chip.ChipGroup-->
+                <!--android:id="@+id/layout_season"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+
+                <!--app:layout_constraintEnd_toEndOf="parent"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/tv_season_label">-->
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/tv_spring"
+                    style="@style/SeasonChipStyle"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:gravity="center"
+                    android:onClick="@{(v)->codiViewModel.seasonClick(v)}"
+                    android:text="@string/spring"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="3.25:1"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_summer"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_season_label"
+                    app:layout_constraintWidth_percent="0.2"
+                    app:season="@{codiViewModel.codi.season}" />
+
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/tv_summer"
+                    style="@style/SeasonChipStyle"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="@{(v)->codiViewModel.seasonClick(v)}"
+                    android:text="@string/summer"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="3.25:1"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_fall"
+                    app:layout_constraintStart_toEndOf="@+id/tv_spring"
+                    app:layout_constraintTop_toTopOf="@+id/tv_spring"
+                    app:layout_constraintWidth_percent="0.2"
+                    app:season="@{codiViewModel.codi.season}" />
+
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/tv_fall"
+                    style="@style/SeasonChipStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="@{(v)->codiViewModel.seasonClick(v)}"
+                    android:text="@string/fall"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="3.25:1"
+
+                    app:layout_constraintEnd_toStartOf="@+id/tv_winter"
+                    app:layout_constraintStart_toEndOf="@+id/tv_summer"
+                    app:layout_constraintTop_toTopOf="@+id/tv_spring"
+                    app:layout_constraintWidth_percent="0.2"
+                    app:season="@{codiViewModel.codi.season}" />
+
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/tv_winter"
+                    style="@style/SeasonChipStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{(v)->codiViewModel.seasonClick(v)}"
+                    android:text="@string/winter"
+                    android:textColor="@color/white"
+
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="3.25:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tv_fall"
+                    app:layout_constraintTop_toTopOf="@+id/tv_spring"
+                    app:layout_constraintWidth_percent="0.2"
+                    app:season="@{codiViewModel.codi.season}" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/tv_add"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_gravity="bottom"
+            android:background="@color/colorAccent"
+            android:gravity="center"
+            android:text="@string/add"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold"
+            android:foreground="?android:selectableItemBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </FrameLayout>
+</layout>

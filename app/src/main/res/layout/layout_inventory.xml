@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.illill.phairy.data.model.Cloth" />
+        <variable
+            name="clothList"
+            type="java.util.List&lt;Cloth&gt;" />
+
+        <import type="com.illill.phairy.data.model.Codi" />
+        <variable
+            name="codiList"
+            type="java.util.List&lt;Codi&gt;" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_inventory"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="7.36:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tabIndicatorColor="@color/transparent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintWidth_percent="0.933" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vp_inventory"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:otherCodiList="@{codiList}"
+            app:otherClothList="@{clothList}"
+            app:tabInventory="@{tabInventory}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tab_inventory" />
+
+
+
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1px"
+            android:background="@color/borderGray"
+            app:layout_constraintWidth_percent="0.93"
+            app:layout_constraintBottom_toTopOf="@+id/tab_inventory"
+            app:layout_constraintEnd_toEndOf="@+id/tab_inventory"
+            app:layout_constraintStart_toStartOf="@+id/tab_inventory" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1px"
+            android:background="@color/borderGray"
+            app:layout_constraintEnd_toEndOf="@+id/tab_inventory"
+            app:layout_constraintStart_toStartOf="@+id/tab_inventory"
+            app:layout_constraintTop_toBottomOf="@+id/tab_inventory" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="0dp"
+            android:background="@color/borderGray"
+            app:layout_constraintWidth_percent="0.93"
+            android:layout_margin="@dimen/_8sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/tab_inventory"
+            app:layout_constraintEnd_toEndOf="@+id/tab_inventory"
+            app:layout_constraintStart_toStartOf="@+id/tab_inventory"
+            app:layout_constraintTop_toTopOf="@+id/tab_inventory" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,138 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.graphics.Bitmap" />
+
+        <variable
+            name="photoViewModel"
+            type="com.illill.phairy.viewmodel.PhotoViewModel" />
+
+        <variable
+            name="codiViewModel"
+            type="com.illill.phairy.viewmodel.CodiViewModel" />
+
+        <!--<variable-->
+            <!--name="clientViewModel"-->
+            <!--type="com.illill.phairy.viewmodel.ClientViewModel" />-->
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/circle_solid_white">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:background="@color/backgroundGray"
+                    android:padding="@dimen/_8sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/tv_back"
+                        style="@style/TextViewKR"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/back"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/_12sdp"
+
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/vp_codi"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    app:indicator="@{indicatorDot}"
+                    app:layout_constraintDimensionRatio="1:0.8"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cl_title"
+                    app:pictures="@{photoViewModel.bitmapList}" />
+
+                <!--<Switch-->
+                    <!--android:id="@+id/sw_open"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginStart="@dimen/_16sdp"-->
+                    <!--android:checked="@={codiViewModel.codi.open}"-->
+                    <!--android:text="@string/open"-->
+                    <!--android:textSize="@dimen/_14sdp"-->
+                    <!--app:layout_constraintBottom_toBottomOf="@+id/indicator_dot"-->
+                    <!--app:layout_constraintStart_toStartOf="parent"-->
+                    <!--app:layout_constraintTop_toTopOf="@+id/indicator_dot"-->
+                    <!--/>-->
+
+                <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
+                    android:id="@+id/indicator_dot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginBottom="@dimen/_12sdp"
+                    app:dampingRatio="0.5"
+                    app:dotsColor="@color/colorAccent"
+                    app:dotsSize="6dp"
+                    app:dotsSpacing="6dp"
+                    app:dotsStrokeColor="@color/lightGray"
+                    app:dotsStrokeWidth="3dp"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/vp_codi"
+                    app:stiffness="300" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1px"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:background="@color/borderGray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/vp_codi" />
+
+                <com.illill.phairy.ui.common.UnswipableViewPager
+                    android:id="@+id/vp_info"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/vp_codi" />
+
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="?android:progressBarStyle"
+                    android:visibility="@{codiViewModel.isSending?View.VISIBLE:View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+
+</layout>

@@ -1,0 +1,401 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+
+
+        <variable
+            name="photoViewModel"
+            type="com.illill.phairy.viewmodel.PhotoViewModel" />
+
+        <variable
+            name="clothViewModel"
+            type="com.illill.phairy.viewmodel.ClothViewModel" />
+
+        <variable
+            name="clientViewModel"
+            type="com.illill.phairy.viewmodel.ClientViewModel" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/circle_solid_white"
+                android:paddingBottom="@dimen/_45sdp">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:background="@color/backgroundGray"
+                    android:padding="@dimen/_8sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/tv_back"
+                        style="@style/TextViewKR"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/back"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/_12sdp"
+
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <ImageView
+                    android:id="@+id/iv_cloth"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:contentDescription="@string/thumbnail"
+                    app:edited="@{clothViewModel.onEdit?clothViewModel.cloth.code:photoViewModel.edited}"
+                    app:layout_constraintDimensionRatio="1:0.8"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cl_title" />
+
+                <!--<Switch-->
+                    <!--android:id="@+id/sw_open"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginStart="@dimen/_16sdp"-->
+                    <!--android:checked="@={clothViewModel.cloth.open}"-->
+                    <!--android:text="@string/open"-->
+                    <!--android:textSize="@dimen/_14sdp"-->
+                    <!--app:layout_constraintStart_toStartOf="parent"-->
+                    <!--app:layout_constraintTop_toBottomOf="@+id/iv_cloth" />-->
+
+                <View
+                    android:layout_width="0dp"
+                    app:layout_constraintWidth_percent="0.93"
+                    android:layout_height="1px"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:background="@color/borderGray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_cloth" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:onClick="@{()->ivLeft.performClick()}"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_left"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/iv_left"
+                    app:layout_constraintWidth_percent="0.5" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:onClick="@{()->ivRight.performClick()}"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_left"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/iv_left"
+                    app:layout_constraintWidth_percent="0.5" />
+
+                <ImageView
+                    android:id="@+id/iv_left"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:background="@drawable/fg_ripple_round"
+                    android:contentDescription="@string/left_arrow"
+                    android:onClick="@{(v)->clothViewModel.arrowButtonClicked(v)}"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_back"
+                    android:tint="@color/lightGray"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintEnd_toStartOf="@+id/carousel"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_cloth"
+                    app:layout_constraintWidth_percent="0.08" />
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/carousel"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:currentCategory="@{clothViewModel.cloth.category}"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_left"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/iv_left"
+                    app:layout_constraintWidth_percent="0.35"
+                    app:pickCloth="@{clothViewModel}" />
+
+                <ImageView
+                    android:id="@+id/iv_right"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:background="@drawable/fg_ripple_round"
+                    android:contentDescription="@string/right_arrow"
+                    android:onClick="@{(v)->clothViewModel.arrowButtonClicked(v)}"
+                    android:padding="4dp"
+                    android:scaleX="-1"
+                    android:src="@drawable/ic_back"
+                    android:tint="@color/lightGray"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toEndOf="@+id/carousel"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_cloth"
+                    app:layout_constraintWidth_percent="0.08" />
+
+                <TextView
+                    android:id="@+id/tv_memo_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_16sdp"
+                    android:text="@string/memo"
+                    android:textSize="@dimen/_12sdp"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/carousel" />
+
+                <EditText
+                    android:id="@+id/tv_memo"
+                    style="@style/TextViewKR"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@null"
+                    android:hint="@string/memo_hint"
+                    android:text="@={clothViewModel.cloth.memo}"
+                    android:textSize="@dimen/_11sdp"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_cloth"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_memo_label"
+                    app:leftView="@{tvMemoLabel}"
+                    app:marginFirstLine="@{clothViewModel.cloth.memo}" />
+
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1px"
+
+                    app:layout_constraintWidth_percent="0.93"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:background="@color/borderGray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_memo" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1px"
+                    app:layout_constraintWidth_percent="0.93"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:background="@color/borderGray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/carousel" />
+
+                <TextView
+                    android:id="@+id/tv_tags_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:text="@string/tags"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_memo" />
+
+                <EditText
+                    android:id="@+id/et_tags"
+                    style="@style/TextViewKR"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@null"
+                    android:hint="@string/tag_hint"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:onEditorAction="@{clothViewModel.editorAction}"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_cloth"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toEndOf="@+id/tv_tags_label"
+                    app:layout_constraintTop_toTopOf="@+id/tv_tags_label"
+                    tools:text="" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/layout_tag"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    app:clothViewModel="@{clothViewModel}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_goneMarginTop="0dp"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="@+id/tv_tags_label"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_tags_label"
+                    app:rwTags="@{clothViewModel.cloth.tags}" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1px"
+                    app:layout_constraintWidth_percent="0.93"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:background="@color/borderGray"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="layout_tag,tv_tags_label"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_tag" />
+
+
+                <TextView
+                    android:id="@+id/tv_season_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginBottom="@dimen/_6sdp"
+                    android:text="@string/season"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+
+                    app:layout_constraintTop_toBottomOf="@+id/layout_tag" />
+
+                <!--app:layout_constraintBottom_toTopOf="@+id/layout_season"-->
+
+                <!--<com.google.android.material.chip.ChipGroup-->
+                <!--android:id="@+id/layout_season"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+
+                <!--app:layout_constraintEnd_toEndOf="parent"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/tv_season_label">-->
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/tv_spring"
+                    style="@style/SeasonChipStyle"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:gravity="center"
+                    android:onClick="@{(v)->clothViewModel.seasonClick(v)}"
+                    android:text="@string/spring"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="3.25:1"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_summer"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_season_label"
+                    app:layout_constraintWidth_percent="0.2"
+                    app:season="@{clothViewModel.cloth.season}" />
+
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/tv_summer"
+                    style="@style/SeasonChipStyle"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="@{(v)->clothViewModel.seasonClick(v)}"
+                    android:text="@string/summer"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="3.25:1"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_fall"
+                    app:layout_constraintStart_toEndOf="@+id/tv_spring"
+                    app:layout_constraintTop_toTopOf="@+id/tv_spring"
+                    app:layout_constraintWidth_percent="0.2"
+                    app:season="@{clothViewModel.cloth.season}" />
+
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/tv_fall"
+                    style="@style/SeasonChipStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="@{(v)->clothViewModel.seasonClick(v)}"
+                    android:text="@string/fall"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="3.25:1"
+
+                    app:layout_constraintEnd_toStartOf="@+id/tv_winter"
+                    app:layout_constraintStart_toEndOf="@+id/tv_summer"
+                    app:layout_constraintTop_toTopOf="@+id/tv_spring"
+                    app:layout_constraintWidth_percent="0.2"
+                    app:season="@{clothViewModel.cloth.season}" />
+
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/tv_winter"
+                    style="@style/SeasonChipStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{(v)->clothViewModel.seasonClick(v)}"
+                    android:text="@string/winter"
+                    android:textColor="@color/white"
+
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="3.25:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tv_fall"
+                    app:layout_constraintTop_toTopOf="@+id/tv_spring"
+                    app:layout_constraintWidth_percent="0.2"
+                    app:season="@{clothViewModel.cloth.season}" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/tv_add"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_gravity="bottom"
+            android:background="@color/colorAccent"
+            android:foreground="?android:selectableItemBackground"
+            android:gravity="center"
+            android:text="@string/add"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </FrameLayout>
+
+</layout>

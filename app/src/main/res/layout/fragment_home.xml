@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+
+        <variable
+            name="weatherViewModel"
+            type="com.illill.phairy.viewmodel.WeatherViewModel" />
+
+        <variable
+            name="clientViewModel"
+            type="com.illill.phairy.viewmodel.ClientViewModel" />
+
+        <variable
+            name="homeViewModel"
+            type="com.illill.phairy.viewmodel.HomeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/backgroundGray"
+            android:padding="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!--<TextView-->
+                <!--android:id="@+id/tv_donate"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginStart="16dp"-->
+                <!--android:background="@drawable/circle_solid_red"-->
+                <!--android:paddingStart="8dp"-->
+                <!--android:paddingTop="4dp"-->
+                <!--android:paddingEnd="8dp"-->
+                <!--android:paddingBottom="4dp"-->
+                <!--android:text="@string/donate"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:textSize="@dimen/_10sdp"-->
+                <!--app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+            <ImageView
+                android:id="@+id/iv_title"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:contentDescription="@string/title"
+                android:src="@drawable/ic_splash_logo"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="152:43"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.21" />
+
+            <include
+
+                layout="@layout/view_weather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                app:weatherViewModel="@{weatherViewModel}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_solid_gray"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:layout_marginTop="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cl_title"
+            app:layout_constraintWidth_percent="0.92">
+
+            <ImageView
+                android:id="@+id/iv_search"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="8dp"
+                android:contentDescription="@string/search_icon"
+                android:src="@drawable/ic_search"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.01"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.06" />
+
+            <EditText
+                android:id="@+id/et_search"
+                style="@style/EditTextKR"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@null"
+                android:ellipsize="end"
+                android:hint="@{homeViewModel.hint}"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:maxLines="1"
+                android:text="@={homeViewModel.inputText}"
+                android:textSize="@dimen/_11sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_search"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_keyword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:padding="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cl_search">
+
+
+            <TextView
+                android:id="@+id/tv_keyward"
+                style="@style/TextViewKR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/famous_keyword"
+                android:textColor="@color/colorText"
+                android:textSize="@dimen/_11sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:homeViewModel="@{homeViewModel}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_keyward"
+                app:recentKeyword="@{homeViewModel.keywords}" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/no_codi_result"
+            android:textColor="@color/darkGray"
+            app:searchResult="@{homeViewModel.items}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.3"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cl_keyword"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_home"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintVertical_bias="0"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:gridItem="@{homeViewModel.items}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cl_keyword"
+            tools:itemCount="5"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            android:layoutAnimation="@anim/layout_animation_fall_down"
+            tools:listitem="@layout/item_grid"
+            tools:orientation="vertical"
+            tools:spanCount="2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

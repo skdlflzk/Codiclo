@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="follow"
+            type="com.illill.phairy.data.model.Client" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="clientViewModel"
+            type="com.illill.phairy.viewmodel.ClientViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:onClick="@{(v)->clientViewModel.showProfileButtonClicked.invoke(follow.uid)}"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/thumbnail"
+            android:scaleType="fitCenter"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.07"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.12"
+            app:setProfileUrl="@{follow.profileUrl}"
+            tools:src="@drawable/img_default" />
+
+
+        <TextView
+            android:id="@+id/tv_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{follow.nickname}"
+            android:textSize="@dimen/_11sdp"
+            app:layout_constraintStart_toStartOf="@+id/tv_style"
+            app:layout_constraintTop_toTopOf="@+id/iv_profile"
+            tools:text="하얀개구리" />
+
+        <TextView
+            android:id="@+id/tv_follow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/circle_solid_red"
+            android:gravity="center"
+            android:onClick="@{(v)->clientViewModel.followButtonClicked(v,follow.uid)}"
+            android:text="@string/follow_upper"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12sdp"
+            app:isFollowing="@{clientViewModel.self}"
+            app:layout_constraintDimensionRatio="4.3:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintStart_toEndOf="@+id/tv_color"
+            app:layout_constraintTop_toTopOf="@+id/tv_nickname"
+            app:layout_constraintWidth_percent="0.2"
+            app:uid="@{follow.uid}" />
+
+        <TextView
+            android:id="@+id/tv_style"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/circle_solid_gray"
+            android:gravity="center"
+            android:text="@{TextUtils.isEmpty(follow.style)?`STYLE`:follow.style}"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/_10sdp"
+
+            app:layout_constraintDimensionRatio="3.725:1"
+            app:layout_constraintEnd_toStartOf="@+id/tv_brand"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/iv_profile"
+            app:layout_constraintTop_toBottomOf="@+id/tv_nickname"
+            app:layout_constraintWidth_percent="0.15" />
+
+        <TextView
+            android:id="@+id/tv_brand"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/circle_solid_gray"
+            android:gravity="center"
+            android:text="@{TextUtils.isEmpty(follow.brand)?`BRAND`:follow.brand}"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_style"
+            app:layout_constraintDimensionRatio="3.725:1"
+            app:layout_constraintEnd_toStartOf="@+id/tv_color"
+            app:layout_constraintStart_toEndOf="@+id/tv_style"
+            app:layout_constraintTop_toTopOf="@+id/tv_style"
+            app:layout_constraintWidth_percent="0.15" />
+
+        <TextView
+            android:id="@+id/tv_color"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/circle_solid_gray"
+
+            android:gravity="center"
+            android:text="@{TextUtils.isEmpty(follow.color)?`COLOR`:follow.color}"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_style"
+            app:layout_constraintDimensionRatio="3.725:1"
+
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/tv_brand"
+            app:layout_constraintTop_toTopOf="@+id/tv_style"
+            app:layout_constraintWidth_percent="0.15" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

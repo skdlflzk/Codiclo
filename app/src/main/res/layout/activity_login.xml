@@ -1,0 +1,166 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".start">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <ImageView
+            android:id="@+id/iv_title"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:contentDescription="@string/title"
+            android:src="@drawable/ic_login_logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="3:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.28"
+            app:layout_constraintWidth_percent="0.4" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_google_login"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/circle_solid_white"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:padding="@dimen/_4sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.65"
+            app:layout_constraintWidth_percent="0.78">
+
+            <ImageView
+                android:id="@+id/ic_google"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/ic_google"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.12" />
+
+            <TextView
+                android:id="@+id/googleLoginButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:gravity="center_horizontal"
+                android:maxLines="1"
+
+                android:text="@string/sign_in_with_google"
+                android:textColor="@color/colorText"
+                android:textSize="@dimen/_15sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ic_google"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_facebook_login"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/circle_solid_white"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:padding="@dimen/_4sdp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cl_google_login"
+            app:layout_constraintWidth_percent="0.78">
+
+            <ImageView
+                android:id="@+id/ic_facebook"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/ic_facebook"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.12" />
+
+            <TextView
+                android:id="@+id/facebookLoginButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:gravity="center_horizontal"
+                android:maxLines="1"
+
+                android:text="@string/sign_in_with_facebook"
+                android:textColor="@color/colorText"
+                android:textSize="@dimen/_15sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ic_facebook"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <!--<androidx.constraintlayout.widget.ConstraintLayout-->
+            <!--android:id="@+id/cl_kakao_login"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@drawable/circle_solid_white"-->
+            <!--android:clickable="true"-->
+            <!--android:focusable="true"-->
+            <!--android:padding="@dimen/_4sdp"-->
+            <!--android:layout_marginTop="40dp"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/cl_facebook_login"-->
+            <!--app:layout_constraintWidth_percent="0.78">-->
+
+            <!--<ImageView-->
+                <!--android:id="@+id/ic_kakao"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:src="@drawable/ic_kakao"-->
+                <!--app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--app:layout_constraintDimensionRatio="1:1"-->
+                <!--app:layout_constraintEnd_toEndOf="parent"-->
+                <!--app:layout_constraintHorizontal_bias="0.05"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toTopOf="parent"-->
+                <!--app:layout_constraintWidth_percent="0.12" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/kakaoLoginButton"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginStart="8dp"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:maxLines="1"-->
+
+                <!--android:text="@string/sign_in_with_kakao"-->
+                <!--android:textColor="@color/colorText"-->
+                <!--android:textSize="@dimen/_15sdp"-->
+                <!--app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--app:layout_constraintEnd_toEndOf="parent"-->
+                <!--app:layout_constraintStart_toEndOf="@+id/ic_kakao"-->
+                <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+        <!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

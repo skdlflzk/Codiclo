@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="category"
+            type="String" />
+
+        <variable
+            name="season"
+            type="int" />
+
+        <variable
+            name="profileViewModel"
+            type="com.illill.phairy.viewmodel.ProfileViewModel" />
+
+
+        <import type="com.illill.phairy.data.model.Cloth" />
+
+        <variable
+            name="clothList"
+            type="java.util.List&lt;Cloth&gt;" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/rl_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:textStyle="bold"
+            android:textSize="@dimen/_14sdp"
+            android:layout_alignParentTop="true"
+            android:layout_margin="@dimen/_12sdp"
+            tools:text="TOP"
+            android:text="@{category}" />
+
+        <TextView
+            android:id="@+id/tv_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/_12sdp"
+            android:background="@drawable/circle_solid_red"
+            android:paddingTop="@dimen/_4sdp"
+            android:paddingBottom="@dimen/_4sdp"
+            android:paddingStart="@dimen/_8sdp"
+            android:paddingEnd="@dimen/_8sdp"
+            android:textSize="@dimen/_9sdp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{(v)->profileViewModel.viewMoreButtonClicked.invoke(category)}"
+            android:text="@string/view_more"
+            android:textColor="@color/white" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_category"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:layout_alignParentStart="true"
+
+            app:category="@{category}"
+            app:season="@{season}"
+            app:clothes="@{clothList}"
+            android:layoutAnimation="@anim/layout_animation_fall_down"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            tools:itemCount="4"
+            tools:listitem="@layout/item_cloth" />
+
+    </RelativeLayout>
+</layout>

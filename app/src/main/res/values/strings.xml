@@ -1,0 +1,161 @@
+<resources>
+    <!--이미지 피커가 app_name을 덮어씌움ㅡㅡ-->
+    <string name="app_name_mine">CODICLO</string>
+    <string name="server_client_id">563998051398-7ch68sq5dnp6ofkqdcaukft8nfq3nrbi.apps.googleusercontent.com</string>
+
+    <!--Facebok Login-->
+    <string name="facebook_app_id">332184731023700</string>
+    <string name="fb_login_protocol_scheme">fb332184731023700</string>
+
+    <!--general-->
+    <string name="error_login">로그인하지 못했습니다.\n문제가 지속되면 문의해주세요</string>
+    <string name="success_login">로그인했습니다.</string>
+    <string name="success_property">변경되었습니다</string>
+    <string name="success_profile">변경되었습니다.\n적용에는 시간이 걸릴 수 있습니다.</string>
+    <string name="error_server">서버 에러가 발생했습니다.\n문제가 지속되면 문의해주세요</string>
+    <string name="error_nickname">중복된 닉네임입니다.</string>
+    <string name="error_later">문제가 발생했습니다.\n나중에 다시 시도해주세요</string>
+
+    <string name="error_only_client">로그인 후에 사용할 수 있습니다</string>
+    <string name="press_again_to_exit">다시 누르면 종료됩니다</string>
+    <string name="ok">OK</string>
+    <string name="copyright">Copyright</string>
+
+    <!--Login-->
+    <string name="sign_in_with_google">Sign in with GOOGLE</string>
+    <string name="sign_in_with_facebook">Sign in with FACEBOOK</string>
+    <string name="sign_in_with_kakao">Sign in with KAKO</string>
+
+
+    <!--Home-->
+    <string name="famous_keyword">인기 키워드</string>
+    <string name="donate">Donate</string>
+    <string name="no_codi_result">결과를 찾을 수 없습니다.\n다른 검색어로 검색해보세요.</string>
+
+    <!--Cloth,Codi-->
+    <string name="add_item">옷/코디 추가</string>
+    <string name="at_least_one_season">하나 이상의 계절을 선택해주세요</string>
+    <string name="open">공개</string>
+
+    <string name="memo">MEMO</string>
+    <string name="memo_hint">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;메모 입력…</string>
+    <string name="tags">TAGS</string>
+    <string name="tag_hint">태그 입력&#8230;</string>
+    <string name="season">SEASON</string>
+
+
+    <string name="spring">Spring</string>
+    <string name="summer">Summer</string>
+    <string name="fall">Fall</string>
+    <string name="winter">Winter</string>
+    <string-array name="season_array">
+        <item>@string/spring</item>
+        <item>@string/summer</item>
+        <item>@string/fall</item>
+        <item>@string/winter</item>
+    </string-array>
+
+    <string name="add">Add</string>
+    <string name="next">Next</string>
+    <string name="remove">삭제</string>
+    <string name="back">이전</string>
+    <string name="edit">수정</string>
+    <string name="cancel">취소</string>
+    <string name="done">done</string>
+    <string name="adapt">적용</string>
+
+    <string name="image_min_1">하나 이상의 이미지를 선택해주세요.</string>
+    <string name="image_max_4">최대 4장까지 업로드할 수 있습니다.</string>
+    <string name="sure_to_delete">정말 삭제하시겠습니까?</string>
+    <string name="deleted">삭제했습니다</string>
+
+
+    <!--Cloth-->
+    <string-array name="clothes_array">
+        <item>TOPS</item>
+        <item>BOTTOMS</item>
+        <item>OUTERS</item>
+        <item>SHOES</item>
+        <item>BAGS</item>
+        <item>ACCESSORIES</item>
+    </string-array>
+    <string-array name="cloth_array">
+        <item>TOP</item>
+        <item>BOTTOM</item>
+        <item>OUTER</item>
+        <item>SHOES</item>
+        <item>BAG</item>
+        <item>ACCESSORY</item>
+    </string-array>
+
+    <string name="add_cloth">옷 추가</string>
+    <string name="search_cloth">메모나 태그로 옷을 검색하세요.</string>
+    <string name="search_hint">메모나 태그로 검색해보세요.</string>
+    <!--Codi-->
+    <string name="info">info</string>
+    <string name="add_codi">코디 추가</string>
+
+
+    <!--Photo-->
+    <string name="draw_outline">외곽선을 따라 그리세요</string>
+    <string name="crop_outline">위치를 조정하거나\n꼭지점을 선택해서 크기를 조정할 수 있습니다</string>
+    <!--profile-->
+    <string-array name="profile_tab">
+        <item name="codi">CODI</item>
+        <item name="closet">CLOSET</item>
+    </string-array>
+
+    <string name="is_closed_account">비공개 계정입니다</string>
+
+    <string name="is_closed_post">비공개인 게시글입니다</string>
+    <string name="favorites">favorites</string>
+    <string name="follow_upper">Follow</string>
+    <string name="setting_upper">Setting</string>
+    <string name="followers">followers</string>
+    <string name="following">following</string>
+    <string name="favorites_upper">Favorites</string>
+    <string name="followers_upper">Followers</string>
+    <string name="following_upper">Following</string>
+
+    <string name="style">STYLE</string>
+    <string name="brand">BRAND</string>
+    <string name="color">COLOR</string>
+    <string name="view_more">View More</string>
+
+    <string name="nickname_to_search">찾을 닉네임을 입력하세요</string>
+
+    <!--세팅-->
+
+    <string name="settings">settings</string>
+    <string name="username">USER NAME</string>
+    <string name="open_account">OPEN ACCOUNT</string>
+    <string name="account_open">계정 공개</string>
+    <string name="notification">NOTIFICATION</string>
+    <string name="notification_all">모든 알림</string>
+    <string name="feedback">FEEDBACK</string>
+    <string name="review">리뷰쓰기</string>
+    <string name="contact">1:1 문의하기</string>
+    <string name="account">ACCOUNT</string>
+    <string name="logout">로그아웃</string>
+
+    <string name="contact_us_description">melogdev@gmail.com\n으로 메일 부탁드립니다.\n감사합니다 :)</string>
+
+    <!--Weather-->
+    <string name="degree">&#176;C</string>
+    <string name="slash">/</string>
+
+
+    <!--contentDescription-->
+
+    <string name="title">title</string>
+    <string name="cloth">cloth</string>
+    <string name="codi">codi</string>
+    <string name="profile_image">profile_image</string>
+    <string name="search_icon">search_icon</string>
+    <string name="thumbnail">thumbnail</string>
+    <string name="back_image">back_image</string>
+    <string name="left_arrow">left_arrow</string>
+    <string name="right_arrow">right_arrow</string>
+    <string name="link">link</string>
+
+</resources>

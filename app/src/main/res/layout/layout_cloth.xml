@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.illill.phairy.data.model.Cloth" />
+
+        <variable
+            name="clothList"
+            type="java.util.List&lt;Cloth&gt;" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_inventory"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="7.36:1"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintWidth_percent="0.933"
+            app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/vp_cloth_categorized"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layoutAnimation="@anim/layout_animation_fall_down"
+            app:allClothList="@{clothList}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tab_inventory"
+            app:tabInventory="@{tabInventory}"
+            tools:listitem="@layout/item_horizontal_clothes" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,7 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+
+
+    <dimen name="selected_border">2dp</dimen>
+    <dimen name="none_selected_border">0dp</dimen>
+</resources>

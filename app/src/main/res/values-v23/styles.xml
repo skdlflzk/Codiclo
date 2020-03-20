@@ -1,0 +1,85 @@
+<resources >
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+
+        <item name="android:buttonStyle">@style/UbuntuButtonStyle</item>
+        <item name="android:editTextStyle">@style/UbuntuEditTextStyle</item>
+        <item name="android:radioButtonStyle">@style/UbuntuRadioButtonStyle</item>
+        <item name="android:checkboxStyle">@style/UbuntuCheckboxStyle</item>
+        <item name="android:textViewStyle">@style/UbuntuTextViewStyle</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
+    <style name="TextViewKR" parent="@android:style/Widget.DeviceDefault.TextView">
+        <item name="android:fontFamily">@font/notosans_regular</item>
+        <item name="android:textColor">@color/darkGray</item>
+        <item name="android:textSize">@dimen/_10sdp</item>
+    </style>
+
+
+    <style name="EditTextKR" parent="@android:style/Widget.DeviceDefault.EditText">
+        <item name="android:fontFamily">@font/</item>
+        <item name="android:textColor">@color/darkGray</item>
+        <item name="android:textColorHint">@color/darkGray</item>
+        <item name="android:textSize">@dimen/_10sdp</item>
+    </style>
+
+    <style name="UbuntuTextViewStyle" parent="@android:style/Widget.DeviceDefault.TextView">
+        <item name="android:fontFamily">@font/ubuntu_regular</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textSize">@dimen/_10sdp</item>
+    </style>
+
+    <style name="UbuntuButtonStyle" parent="@android:style/Widget.DeviceDefault.Button.Borderless">
+        <item name="android:fontFamily">@font/ubuntu_regular</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textSize">@dimen/_10sdp</item>
+    </style>
+
+    <style name="UbuntuEditTextStyle" parent="@android:style/Widget.DeviceDefault.EditText">
+        <item name="android:fontFamily">@font/ubuntu_regular</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textColorHint">@color/darkGray</item>
+        <item name="android:textSize">@dimen/_10sdp</item>
+    </style>
+    <style name="UbuntuRadioButtonStyle" parent="@android:style/Widget.DeviceDefault.CompoundButton.RadioButton">
+        <item name="android:fontFamily">@font/ubuntu_regular</item>
+    </style>
+    <style name="UbuntuCheckboxStyle" parent="@android:style/Widget.DeviceDefault.CompoundButton.CheckBox">
+        <item name="android:fontFamily">@font/ubuntu_regular</item>
+        <item name="android:textColor">@color/colorText</item>
+    </style>
+
+    <style name="CustomBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
+
+    </style>
+    <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+
+
+
+    <style name="ChipTextStyle">
+        <item name="android:textSize">@dimen/_10sdp</item>
+        <item name="android:background">@color/lightGray</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:fontFamily">@font/ubuntu_regular</item>
+    </style>
+    <style name="SeasonChipStyle" parent ="Widget.MaterialComponents.Chip.Action" >
+        <item name="closeIconVisible">false</item>
+        <item name="chipBackgroundColor">@color/lightGray</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:fontFamily">@font/ubuntu_regular</item>
+    </style>
+
+</resources>

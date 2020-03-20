@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="profileViewModel"
+            type="com.illill.phairy.viewmodel.ProfileViewModel" />
+
+        <variable
+            name="clientViewModel"
+            type="com.illill.phairy.viewmodel.ClientViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/backgroundGray"
+            android:padding="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="4dp"
+                android:contentDescription="@string/back_image"
+                android:src="@drawable/ic_back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.07" />
+
+            <TextView
+                android:id="@+id/tv_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{profileViewModel.other.nickname}"
+                android:textSize="@dimen/_15sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="하얀개구리" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cl_title">
+
+            <ImageView
+                android:id="@+id/iv_profile"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="4dp"
+                android:contentDescription="@string/profile_image"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.07"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.258"
+                app:setProfileUrl="@{profileViewModel.other.profileUrl}"
+                tools:src="@drawable/img_default" />
+
+
+            <include
+                android:id="@+id/view_2_data_1"
+                layout="@layout/view_2_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toStartOf="@+id/view_2_data_2"
+                app:layout_constraintStart_toEndOf="@+id/iv_profile"
+                app:layout_constraintTop_toTopOf="parent"
+                app:name="@{@string/followers_upper}"
+                app:value="@{profileViewModel.other.followers.size}" />
+
+            <include
+                android:id="@+id/view_2_data_2"
+                layout="@layout/view_2_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/view_2_data_1"
+                app:layout_constraintEnd_toStartOf="@+id/view_2_data_3"
+                app:layout_constraintStart_toEndOf="@+id/view_2_data_1"
+                app:layout_constraintTop_toTopOf="@+id/view_2_data_1"
+                app:name="@{@string/following_upper}"
+                app:value="@{profileViewModel.other.followings.size}" />
+
+            <include
+                android:id="@+id/view_2_data_3"
+                layout="@layout/view_2_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/view_2_data_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/view_2_data_2"
+                app:layout_constraintTop_toTopOf="@+id/view_2_data_1"
+                app:name="@{@string/favorites_upper}"
+                app:value="@{profileViewModel.favCodiList.size+profileViewModel.favClothList.size}" />
+
+            <TextView
+                android:id="@+id/tv_follow"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:gravity="center"
+                android:onClick="@{(v)->clientViewModel.followButtonClicked(v, profileViewModel.other.uid)}"
+                android:padding="3dp"
+                android:text="@string/follow_upper"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15sdp"
+                app:isFollowing="@{clientViewModel.self}"
+                app:layout_constraintEnd_toEndOf="@+id/view_2_data_3"
+                app:layout_constraintStart_toStartOf="@+id/view_2_data_1"
+                app:layout_constraintTop_toBottomOf="@+id/view_2_data_1"
+                app:uid="@{profileViewModel.other.uid}"
+                tools:background="@drawable/circle_solid_red" />
+
+
+            <TextView
+                android:id="@+id/tv_style"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/circle_solid_gray"
+                android:gravity="center"
+
+                android:text="@{TextUtils.isEmpty(profileViewModel.other.style)?`STYLE`:profileViewModel.other.style}"
+                android:textColor="@color/colorAccent"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="3.725:1"
+                app:layout_constraintEnd_toStartOf="@+id/tv_brand"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_profile"
+                app:layout_constraintWidth_percent="0.2" />
+
+            <TextView
+                android:id="@+id/tv_brand"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/circle_solid_gray"
+                android:gravity="center"
+                android:text="@{TextUtils.isEmpty(profileViewModel.other.brand)?`BRAND`:profileViewModel.other.brand}"
+                android:textColor="@color/colorAccent"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_style"
+                app:layout_constraintDimensionRatio="3.725:1"
+                app:layout_constraintEnd_toStartOf="@+id/tv_color"
+                app:layout_constraintStart_toEndOf="@+id/tv_style"
+                app:layout_constraintTop_toTopOf="@+id/tv_style"
+                app:layout_constraintWidth_percent="0.2" />
+
+            <TextView
+                android:id="@+id/tv_color"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/circle_solid_gray"
+
+                android:gravity="center"
+                android:text="@{TextUtils.isEmpty(profileViewModel.other.color)?`COLOR`:profileViewModel.other.color}"
+                android:textColor="@color/colorAccent"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_style"
+                app:layout_constraintDimensionRatio="3.725:1"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@+id/tv_brand"
+                app:layout_constraintTop_toTopOf="@+id/tv_style"
+                app:layout_constraintWidth_percent="0.2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <include
+            layout="@layout/layout_inventory"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="@{profileViewModel.other.open?View.VISIBLE:View.GONE}"
+            app:clothList="@{profileViewModel.clothList}"
+            app:codiList="@{profileViewModel.codiList}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cl_info"
+            tools:visibility="gone" />
+
+
+        <TextView
+            android:id="@+id/tv_secret"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/is_closed_account"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="@color/darkGray"
+            android:visibility="@{profileViewModel.other.open?View.GONE:View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

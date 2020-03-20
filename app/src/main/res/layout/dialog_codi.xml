@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="codi"
+            type="com.illill.phairy.data.model.Codi" />
+
+        <variable
+            name="codiViewModel"
+            type="com.illill.phairy.viewmodel.CodiViewModel" />
+
+        <variable
+            name="clientViewModel"
+            type="com.illill.phairy.viewmodel.ClientViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/circle_solid_white"
+                android:paddingBottom="@dimen/_16sdp">
+
+
+                <include
+                    android:id="@+id/layout_other"
+                    layout="@layout/layout_other"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{!clientViewModel.self.uid.equals(codi.uid)?View.VISIBLE:View.GONE}"
+                    app:clientViewModel="@{clientViewModel}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:nickname="@{codi.nickname}"
+                    app:uid="@{codi.uid}" />
+
+                <TextView
+                    android:id="@+id/tv_delete"
+                    style="@style/TextViewKR"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_16sdp"
+                    android:paddingBottom="@dimen/_8sdp"
+                    android:text="@string/remove"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/_12sdp"
+                    android:visibility="@{clientViewModel.self.uid.equals(codi.uid)?View.VISIBLE:View.GONE}"
+                    android:onClick="@{(v)->codiViewModel.deleteCodi(v,codi)}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_other" />
+
+                <TextView
+                    android:id="@+id/tv_edit"
+                    style="@style/TextViewKR"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_16sdp"
+                    android:text="@string/edit"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/_12sdp"
+                    android:onClick="@{(v)->codiViewModel.codiEditButtonClicked.invoke(v,codi)}"
+                    android:visibility="@{clientViewModel.self.uid.equals(codi.uid)?View.VISIBLE:View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_other" />
+
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/vp_codi"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:indicator="@{indicatorDot}"
+                    app:layout_constraintDimensionRatio="1:0.8"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_delete"
+                    app:pictures="@{codi.pictures}" />
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="?android:progressBarStyle"
+                    android:visibility="@{codiViewModel.isSending?View.VISIBLE:View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    />
+                <TextView
+                    android:id="@+id/tv_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_16sdp"
+                    android:background="@drawable/circle_solid_red"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingTop="@dimen/_2sdp"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_2sdp"
+                    android:text="@string/info"
+                    app:codi1="@{viewInfo1}"
+                    app:codi2="@{viewInfo2}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintBottom_toBottomOf="@+id/vp_codi"
+                    app:layout_constraintStart_toStartOf="@+id/vp_codi" />
+
+                <ImageView
+                    android:id="@+id/iv_heart"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/_16sdp"
+                    android:background="@drawable/fg_ripple_round"
+                    android:clickable="true"
+                    android:contentDescription="@string/favorites"
+                    android:focusable="true"
+                    app:favCodiList="@{clientViewModel.myFavCodiList}"
+                    app:favClothList="@{clientViewModel.myFavClothList}"
+                    android:onClick="@{(v)->clientViewModel.favButtonClicked(v,codi)}"
+                    app:item="@{codi}"
+                    app:layout_constraintBottom_toBottomOf="@+id/vp_codi"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintEnd_toEndOf="@+id/vp_codi"
+                    app:layout_constraintWidth_percent="0.07"
+                    tools:src="@drawable/ic_favorites_on" />
+
+
+                <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
+                    android:id="@+id/indicator_dot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    app:dampingRatio="0.5"
+                    app:dotsColor="@color/colorAccent"
+                    app:dotsSize="6dp"
+                    app:dotsSpacing="6dp"
+                    app:dotsStrokeColor="@color/lightGray"
+                    app:dotsStrokeWidth="3dp"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/vp_codi"
+                    app:stiffness="300" />
+
+                <!--<com.illill.phairy.ui.common.UnswipableViewPager-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/vp_info"-->
+                <!--app:codi="@{codi}"-->
+                <!--app:codiViewModel="@{codiViewModel}"-->
+                <!--android:layout_marginTop="@dimen/_8sdp"-->
+                <!--app:switch="@{tvInfo}"-->
+                <!--app:layout_constraintStart_toStartOf="@+id/vp_codi"-->
+                <!--app:layout_constraintEnd_toEndOf="@+id/vp_codi"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/indicator_dot"-->
+                <!--app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--/>-->
+
+                <include
+                    android:id="@+id/view_info1"
+                    layout="@layout/view_codi_info1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:codi="@{codi}"
+                    app:codiViewModel="@{codiViewModel}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/vp_codi"
+                    app:layout_constraintStart_toStartOf="@+id/vp_codi"
+                    app:layout_constraintTop_toBottomOf="@+id/indicator_dot" />
+                <include
+                    android:id="@+id/view_info2"
+                    layout="@layout/view_codi_info2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:codi="@{codi}"
+                    app:codiViewModel="@{codiViewModel}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/vp_codi"
+                    app:layout_constraintStart_toStartOf="@+id/vp_codi"
+                    app:layout_constraintTop_toBottomOf="@+id/indicator_dot" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

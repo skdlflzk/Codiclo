@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="clientViewModel"
+            type="com.illill.phairy.viewmodel.ClientViewModel" />
+
+        <variable
+            name="settingViewModel"
+            type="com.illill.phairy.viewmodel.SettingViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/backgroundGray"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <ImageView
+                    android:id="@+id/iv_back"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="4dp"
+                    android:contentDescription="@string/back_image"
+                    android:src="@drawable/ic_back"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.07" />
+
+                <TextView
+                    android:id="@+id/tv_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings"
+                    android:textSize="@dimen/_15sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_info"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cl_title">
+
+                <ImageView
+                    android:id="@+id/iv_profile"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/fg_ripple_round"
+                    android:contentDescription="@string/profile_image"
+                    android:onClick="@{(v)->clientViewModel.selectProfile(v)}"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.258"
+                    app:setProfileUrl="@{clientViewModel.self.profileUrl}" />
+
+
+                <EditText
+                    android:id="@+id/tv_style"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/circle_solid_gray"
+                    android:gravity="center"
+                    android:hint="@string/style"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:onEditorAction="@{clientViewModel.onPropertyChanged}"
+                    android:padding="@dimen/_2sdp"
+                    android:text="@={clientViewModel.self.style,default=@string/style}"
+                    android:textColor="@color/colorAccent"
+                    android:textColorHint="@color/colorAccent"
+                    android:textSize="@dimen/_9sdp"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="3.725:1"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_brand"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_profile"
+                    app:layout_constraintWidth_percent="0.2" />
+
+                <EditText
+                    android:id="@+id/tv_brand"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/circle_solid_gray"
+                    android:gravity="center"
+                    android:hint="@string/brand"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:onEditorAction="@{clientViewModel.onPropertyChanged}"
+                    android:text="@={clientViewModel.self.brand,default=@string/brand}"
+                    android:textColor="@color/colorAccent"
+                    android:textColorHint="@color/colorAccent"
+                    android:textSize="@dimen/_9sdp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_style"
+                    app:layout_constraintDimensionRatio="3.725:1"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_color"
+                    app:layout_constraintStart_toEndOf="@+id/tv_style"
+                    app:layout_constraintTop_toTopOf="@+id/tv_style"
+                    app:layout_constraintWidth_percent="0.2" />
+
+                <EditText
+                    android:id="@+id/tv_color"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/circle_solid_gray"
+                    android:gravity="center"
+                    android:hint="@string/color"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:onEditorAction="@{clientViewModel.onPropertyChanged}"
+                    android:text="@={clientViewModel.self.color,default=@string/color}"
+                    android:textColor="@color/colorAccent"
+                    android:textColorHint="@color/colorAccent"
+                    android:textSize="@dimen/_9sdp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_style"
+                    app:layout_constraintDimensionRatio="3.725:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toEndOf="@+id/tv_brand"
+                    app:layout_constraintTop_toTopOf="@+id/tv_style"
+                    app:layout_constraintWidth_percent="0.2" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:background="@drawable/circle_solid_red"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_nickname_label"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toStartOf="@+id/tv_nickname_label"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_nickname_label"
+                app:layout_constraintWidth_percent="0.025" />
+
+
+            <TextView
+                android:id="@+id/tv_nickname_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/username"
+                android:textColor="@color/darkGray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cl_info" />
+
+
+            <!--<TextView-->
+            <!--android:id="@+id/tv_nickname_error"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:text="@string/error_nickname"-->
+            <!--android:textColor="@color/darkGray"-->
+            <!--android:gravity="center"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintHorizontal_bias="0.9"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="@+id/et_nickname" -->
+            <!--app:layout_constraintBottom_toBottomOf="@+id/et_nickname" -->
+            <!---->
+            <!--/>-->
+
+
+            <EditText
+                android:id="@+id/et_nickname"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8sdp"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="@string/username"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:maxLines="1"
+                android:onEditorAction="@{clientViewModel.onPropertyChanged}"
+                android:paddingStart="@dimen/_4sdp"
+                android:paddingTop="@dimen/_8sdp"
+                android:paddingEnd="@dimen/_4sdp"
+                android:paddingBottom="@dimen/_8sdp"
+                android:text="@={clientViewModel.self.nickname}"
+                android:textSize="@dimen/_12sdp"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_nickname_label"
+                tools:text="붉은코끼리" />
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1px"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:background="@color/borderGray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_nickname"
+                app:layout_constraintWidth_percent="0.95" />
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:background="@drawable/circle_solid_red"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_notification"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toStartOf="@+id/tv_notification"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_notification"
+                app:layout_constraintWidth_percent="0.025" />
+
+
+            <TextView
+                android:id="@+id/tv_notification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="@string/notification"
+                android:textColor="@color/darkGray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_open_account" />
+
+
+            <TextView
+                android:id="@+id/tv_notification_all"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8sdp"
+                android:background="@drawable/fg_ripple_round"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:onClick="@{(v)->swNotification.toggle()}"
+                android:paddingStart="@dimen/_4sdp"
+                android:paddingTop="@dimen/_8sdp"
+                android:paddingEnd="@dimen/_4sdp"
+                android:paddingBottom="@dimen/_8sdp"
+                android:text="@string/notification_all"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_notification" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1px"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:background="@color/borderGray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_notification_all"
+                app:layout_constraintWidth_percent="0.95" />
+
+            <Switch
+                android:id="@+id/sw_notification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:checked="@={settingViewModel.notificationEnabled}"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_notification_all"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_notification_all" />
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:background="@drawable/circle_solid_red"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_open_account_label"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toStartOf="@+id/tv_open_account_label"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_open_account_label"
+                app:layout_constraintWidth_percent="0.025" />
+
+
+            <TextView
+                android:id="@+id/tv_open_account_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="@string/open_account"
+                android:textColor="@color/darkGray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_nickname" />
+
+
+            <TextView
+                android:id="@+id/tv_open_account"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8sdp"
+                android:background="@drawable/fg_ripple_round"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:onClick="@{(v)->clientViewModel.onOpenChanged(swOpenAccount)}"
+                android:paddingStart="@dimen/_4sdp"
+                android:paddingTop="@dimen/_8sdp"
+                android:paddingEnd="@dimen/_4sdp"
+                android:paddingBottom="@dimen/_8sdp"
+                android:text="@string/account_open"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_open_account_label" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1px"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:background="@color/borderGray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_open_account"
+                app:layout_constraintWidth_percent="0.95" />
+
+            <Switch
+                android:id="@+id/sw_open_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:checked="@{clientViewModel.self.open}"
+
+                android:focusable="false"
+                android:clickable="false"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_open_account"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_open_account" />
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:background="@drawable/circle_solid_red"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_feedback_label"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toStartOf="@+id/tv_feedback_label"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_feedback_label"
+                app:layout_constraintWidth_percent="0.025" />
+
+
+            <TextView
+                android:id="@+id/tv_feedback_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="@string/feedback"
+                android:textColor="@color/darkGray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_notification_all" />
+
+
+            <TextView
+                android:id="@+id/tv_review"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8sdp"
+                android:background="@drawable/fg_ripple_round"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/_4sdp"
+                android:paddingTop="@dimen/_8sdp"
+                android:paddingEnd="@dimen/_4sdp"
+                android:paddingBottom="@dimen/_8sdp"
+                android:text="@string/review"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_feedback_label" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1px"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:background="@color/borderGray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_review"
+                app:layout_constraintWidth_percent="0.95" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:contentDescription="@string/review"
+                android:padding="@dimen/_8sdp"
+                android:scaleX="-1"
+                android:src="@drawable/ic_back"
+                android:tint="@color/darkGray"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_review"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="@dimen/_8sdp"
+                app:layout_constraintTop_toTopOf="@+id/tv_review" />
+
+            <TextView
+                android:id="@+id/tv_contact"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:background="@drawable/fg_ripple_round"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/_4sdp"
+                android:paddingTop="@dimen/_8sdp"
+                android:paddingEnd="@dimen/_4sdp"
+                android:paddingBottom="@dimen/_8sdp"
+                android:text="@string/contact"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_review" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1px"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:background="@color/borderGray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_contact"
+                app:layout_constraintWidth_percent="0.95" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:contentDescription="@string/contact"
+                android:padding="@dimen/_8sdp"
+                android:scaleX="-1"
+                android:src="@drawable/ic_back"
+                android:tint="@color/darkGray"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_contact"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="@dimen/_8sdp"
+                app:layout_constraintTop_toTopOf="@+id/tv_contact" />
+
+
+            <!--<View-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="1px"-->
+            <!--android:layout_margin="@dimen/_3sdp"-->
+            <!--android:background="@color/borderGray"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/tv_contact"-->
+            <!--app:layout_constraintWidth_percent="0.95" />-->
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:background="@drawable/circle_solid_red"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_account"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toStartOf="@+id/tv_account"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_account"
+                app:layout_constraintWidth_percent="0.025" />
+
+
+            <TextView
+                android:id="@+id/tv_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="@string/account"
+                android:textColor="@color/darkGray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_contact" />
+
+
+            <TextView
+                android:id="@+id/tv_logout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8sdp"
+                android:background="@drawable/fg_ripple_round"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/_4sdp"
+                android:paddingTop="@dimen/_8sdp"
+                android:paddingEnd="@dimen/_4sdp"
+                android:paddingBottom="@dimen/_8sdp"
+                android:text="@string/logout"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_account" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1px"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:background="@color/borderGray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_logout"
+                app:layout_constraintWidth_percent="0.95" />
+
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:contentDescription="@string/logout"
+                android:padding="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:scaleX="-1"
+                android:src="@drawable/ic_back"
+                android:tint="@color/darkGray"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_logout"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_logout" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/copyright"
+                android:src="@drawable/ic_copyright"
+                android:layout_marginTop="@dimen/_22sdp"
+                app:layout_constraintWidth_percent="0.4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_logout" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
